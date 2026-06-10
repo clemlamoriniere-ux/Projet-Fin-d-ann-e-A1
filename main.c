@@ -3,11 +3,6 @@
 #include <math.h>
 #include "main.h"
 
-int main(){
-    vectorTest();
-    return 0;
-}
-
 vector addition(vector vector1, vector vector2){
     vector new_vector;
     new_vector.x = vector1.x + vector2.x;
@@ -45,10 +40,10 @@ vector new_vector(double x, double y,double z){
 }
 
 void print_vector(vector vector1){
-    printf("(%d)\n(%d)\n(%d)\n", vector1.x, vector1.y, vector1.z);
+    printf("(%.2lf %.2lf %.2lf)\n", vector1.x, vector1.y, vector1.z);
 }
 
-int vectorTest(){
+void vectorTest(){
     vector vector1 = new_vector(3.0,3.0,0.0);
     vector vector2 = new_vector(2.0,2.0,0.0);
     vector vector_addition = addition(vector1,vector2);
@@ -58,6 +53,9 @@ int vectorTest(){
     vector vector_multiplication = multiplication(vector1,2.0);
     print_vector(vector_multiplication);
     double norme_vector = norme(vector1);
-    printf("norme : %d", norme_vector);
-    return 0;
+    printf("norme : %.2lf \n", norme_vector);
+}
+
+int main(){
+    vectorTest();
 }
