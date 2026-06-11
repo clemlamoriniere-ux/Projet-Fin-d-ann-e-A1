@@ -41,7 +41,7 @@ Résolution de l'équation différentiel par la méthode d'Euler pour obtenir un
 }
 
 int main(){
-    //voidTest();
+    vectorTest();
 
     trajectoire traj = new_trajectoire(365); // 365: Révolution de la Terre
     planete Earth = new_planete("Terre",MASSE_TERRE,traj,PERIHELIE_TERRE);

@@ -74,5 +74,5 @@ fonction test
     vector vector_multiplication = multiplication(vector1, 2.0);
     print_vector(vector_multiplication);
     double norme_vector = norme(vector1);
-    printf("norme : %.2lf \n", norme_vector);
+    printf("norme : %.2lf \n\n", norme_vector);
 }
