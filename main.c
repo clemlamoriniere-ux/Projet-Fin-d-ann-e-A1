@@ -7,13 +7,10 @@
 #include "trajectoire.h"
 #include "vector.h"
 
-int main()
-{
-    vectorTest();
+int main(){
 }
 
-trajectoire euler(point p)
-{
+trajectoire euler(point p){
     // position  depart:
     //  valeur en x
 
@@ -30,7 +27,7 @@ trajectoire euler(point p)
         // vect acc
 
         // pas de temps
-        int dt = 123;
+        int dt = 86400;
 
     trajectoire traj;
     traj->ensemble = malloc(sizeof(vector) * 365);
@@ -42,4 +39,7 @@ trajectoire euler(point p)
                 traj->ensemble[i] = (x_t_plus_un, vx + 1, i);
     }
     return traj;
+}
+
+int main(){
 }

@@ -7,8 +7,7 @@
 #include "trajectoire.h"
 #include "vector.h"
 
-vector addition(vector vector1, vector vector2)
-{
+vector addition(vector vector1, vector vector2){
     vector new_vector;
     new_vector.x = vector1.x + vector2.x;
     new_vector.y = vector1.y + vector2.y;
@@ -16,8 +15,7 @@ vector addition(vector vector1, vector vector2)
     return new_vector;
 }
 
-vector soustraction(vector vector1, vector vector2)
-{
+vector soustraction(vector vector1, vector vector2){
     vector new_vector;
     new_vector.x = vector1.x - vector2.x;
     new_vector.y = vector1.y - vector2.y;
@@ -25,8 +23,7 @@ vector soustraction(vector vector1, vector vector2)
     return new_vector;
 }
 
-vector multiplication(vector vector1, double scalaire)
-{
+vector multiplication(vector vector1, double scalaire){
     vector new_vector;
     new_vector.x = scalaire * vector1.x;
     new_vector.y = scalaire * vector1.y;
@@ -34,13 +31,11 @@ vector multiplication(vector vector1, double scalaire)
     return new_vector;
 }
 
-double norme(vector vector1)
-{
+double norme(vector vector1){
     return sqrt(pow(vector1.x, 2) + pow(vector1.y, 2) + pow(vector1.z, 2));
 }
 
-vector new_vector(double x, double y, double z)
-{
+vector new_vector(double x, double y, double z){
     vector vector1;
     vector1.x = x;
     vector1.y = y;
@@ -48,13 +43,11 @@ vector new_vector(double x, double y, double z)
     return vector1;
 }
 
-void print_vector(vector vector1)
-{
+void print_vector(vector vector1){
     printf("(%.2lf %.2lf %.2lf)\n", vector1.x, vector1.y, vector1.z);
 }
 
-void vectorTest()
-{
+void vectorTest(){
     vector vector1 = new_vector(3.0, 3.0, 0.0);
     vector vector2 = new_vector(2.0, 2.0, 0.0);
     vector vector_addition = addition(vector1, vector2);
@@ -65,4 +58,8 @@ void vectorTest()
     print_vector(vector_multiplication);
     double norme_vector = norme(vector1);
     printf("norme : %.2lf \n", norme_vector);
+}
+
+int main(){
+    vectorTest();
 }

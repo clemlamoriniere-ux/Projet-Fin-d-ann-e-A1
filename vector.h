@@ -1,8 +1,7 @@
 #ifndef VECTOR_H
 #define VECTOR_H
 
-typedef struct vector_
-{
+typedef struct vector_{
     double x;
     double y;
     double z;
