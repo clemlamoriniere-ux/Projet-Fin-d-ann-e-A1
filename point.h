@@ -9,4 +9,6 @@ typedef struct point_{
     int t;
 } point;
 
+point new_point(vector r1, vector v1, int t);
+
 #endif

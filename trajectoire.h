@@ -7,4 +7,7 @@ typedef struct trajectoire_{
     point *ensemble;
 } trajectoire;
 
+trajectoire new_trajectoire(int nbPoints);
+void printTrajectoire(trajectoire traj, int nbPoints);
+
 #endif

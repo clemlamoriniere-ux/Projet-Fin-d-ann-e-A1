@@ -1,13 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
-#include "constante.h"
-#include "planete.h"
-#include "point.h"
-#include "trajectoire.h"
 #include "vector.h"
 
 vector addition(vector vector1, vector vector2){
+/*
+additionner deux vecteurs
+*/
     vector new_vector;
     new_vector.x = vector1.x + vector2.x;
     new_vector.y = vector1.y + vector2.y;
@@ -16,6 +15,9 @@ vector addition(vector vector1, vector vector2){
 }
 
 vector soustraction(vector vector1, vector vector2){
+/*
+soustraire deux vecteurs
+*/
     vector new_vector;
     new_vector.x = vector1.x - vector2.x;
     new_vector.y = vector1.y - vector2.y;
@@ -24,6 +26,9 @@ vector soustraction(vector vector1, vector vector2){
 }
 
 vector multiplication(vector vector1, double scalaire){
+/*
+multiplier un vecteur par un scalaire
+*/
     vector new_vector;
     new_vector.x = scalaire * vector1.x;
     new_vector.y = scalaire * vector1.y;
@@ -32,10 +37,16 @@ vector multiplication(vector vector1, double scalaire){
 }
 
 double norme(vector vector1){
+/*
+Formule de la norme d'un vecteur
+*/
     return sqrt(pow(vector1.x, 2) + pow(vector1.y, 2) + pow(vector1.z, 2));
 }
 
 vector new_vector(double x, double y, double z){
+/*
+Créer un vecteur
+*/
     vector vector1;
     vector1.x = x;
     vector1.y = y;
@@ -44,10 +55,16 @@ vector new_vector(double x, double y, double z){
 }
 
 void print_vector(vector vector1){
+/*
+afficher un vecteur
+*/
     printf("(%.2lf %.2lf %.2lf)\n", vector1.x, vector1.y, vector1.z);
 }
 
 void vectorTest(){
+/*
+fonction test
+*/
     vector vector1 = new_vector(3.0, 3.0, 0.0);
     vector vector2 = new_vector(2.0, 2.0, 0.0);
     vector vector_addition = addition(vector1, vector2);
@@ -58,8 +75,4 @@ void vectorTest(){
     print_vector(vector_multiplication);
     double norme_vector = norme(vector1);
     printf("norme : %.2lf \n", norme_vector);
-}
-
-int main(){
-    vectorTest();
 }

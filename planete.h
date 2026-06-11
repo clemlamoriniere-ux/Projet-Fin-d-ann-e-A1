@@ -7,7 +7,7 @@ typedef struct planete_{
     char *nom;
     double masse;
     trajectoire traj;
-    double periphelie;
+    double perihelie;
 } planete;
 
 planete new_planete(char* nom1, double masse1,trajectoire traj1,double perihelie1);
