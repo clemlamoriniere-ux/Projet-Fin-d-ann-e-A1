@@ -18,16 +18,10 @@ p {
   margin: 4px 0;
 }
 
-input[type="file"] {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 15px;
-  background-color: #222222;
-  color: #ffffff;
-  border: 1px solid #aaaaaa;
-  border-radius: 6px;
-  cursor: pointer;
+input {
+  margin: 20px;
   font-size: 14px;
+  color: #ffffff;
 }
 
 #canvas-container {
