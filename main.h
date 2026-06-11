@@ -24,6 +24,14 @@ typedef  struct planete_ {
     double periphelie;
 }planete;
 
+typedef  struct terre_ {
+    double masse = 5.972 * pow(10,24);
+    double perihelie = 147099894000.0;
+    double excentricite = 0.01671022;
+    double demi_axe = 149597870700.0;
+    double masse_soleil = 1.989 * pow(10,30);
+}terre;
+
 vector addition(vector vector1, vector vector2);
 vector soustraction(vector vector1, vector vector2);
 vector multiplication(vector vector1, double scalaire);

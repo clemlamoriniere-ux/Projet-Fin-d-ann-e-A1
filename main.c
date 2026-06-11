@@ -59,3 +59,16 @@ void vectorTest(){
 int main(){
     vectorTest();
 }
+
+trajectoire euler(p point){
+    double vitesse_perihelie = sqrt(9.81*terre.masse_soleil*(1+terre.excentricite)) / sqrt(terre.demi_axe(1-terre.excentricite));
+    double acceleration_perihelie = (9.81*terre.masse_soleil)
+
+    trajectoire traj;
+    traj->ensemble = malloc(sizeof(vector)*365);
+    for(int i=0; i< 365; i++){
+        double x_t_plus_un = point.r.x + point.v.x * t;
+        traj->ensemble[i] = x_t_plus_un;
+    }
+    return traj;
+}
