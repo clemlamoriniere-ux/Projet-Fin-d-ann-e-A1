@@ -1,0 +1,38 @@
+body {
+  background-color: #121212;
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  text-align: center;
+  padding: 30px;
+}
+
+h1 {
+  font-size: 28px;
+  color: #ffffff;
+  margin-bottom: 15px;
+}
+
+p {
+  font-size: 14px;
+  color: #cccccc;
+  margin: 4px 0;
+}
+
+input[type="file"] {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 15px;
+  background-color: #222222;
+  color: #ffffff;
+  border: 1px solid #aaaaaa;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+#canvas-container {
+  display: inline-block;
+  border: 2px solid #aaaaaa;
+  border-radius: 6px;
+  margin-top: 15px;
+}
