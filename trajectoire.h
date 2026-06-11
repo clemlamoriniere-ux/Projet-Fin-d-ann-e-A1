@@ -1,5 +1,7 @@
-#ifndef PLANETE_H
-#define PLANETE_H
+#ifndef TRAJECTOIRE_H
+#define TRAJECTOIRE_H
+
+#include "point.h"
 
 typedef struct trajectoire_{
     point *ensemble;

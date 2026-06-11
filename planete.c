@@ -9,7 +9,7 @@
 
 planete new_planete(char* nom1, double masse1,trajectoire traj1,double periphelie1){
     planete planet;
-    planet->nom = nom1;
+    planet.nom = nom1;
     planet.masse = masse1;
     planet.traj = traj1;
     planet.perihelie = perihelie1;
