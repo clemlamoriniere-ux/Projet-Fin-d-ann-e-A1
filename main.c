@@ -30,14 +30,14 @@ trajectoire euler(planete planet)
 
     trajectoire traj;
     traj->ensemble = malloc(sizeof(vector) * 365);
-    for (int i = 0; i < 365; i++)
-    {
-        double x_t_plus_un = planet.r.x + planet.v.x * dt;
-        double vx_t_plus_un = planet.v.x + acceleration_perihelie_x * dt;
-        traj->ensemble[i] = (x_t_plus_un, vx_t_plus_un, i);
+    for (int i = 0; i < 365; i++){
+        vector pos_t_plus_un = new_vector(addition(planet.r.x , multiplication(planet.v.x , dt)),addition(planet.r.y,multiplication(vitesse_perihelie_y,dt)),0);
+        vector v_t_plus_un = new_vector(addition(planet.v.x , multiplication(acceleration_perihelie , dt)),addition(planet.v.y,multiplication(0,dt)),0);
+        traj->ensemble[i] = {pos_t_plus_un, v_t_plus_un, i};
     }
     return traj;
 }
+
 int main()
 {
 }
