@@ -3,30 +3,50 @@ body {
   color: #ffffff;
   font-family: Arial, sans-serif;
   text-align: center;
-  padding: 30px;
+  padding: 20px;
 }
 
 h1 {
   font-size: 28px;
   color: #ffffff;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 p {
   font-size: 14px;
   color: #cccccc;
-  margin: 4px 0;
-}
-
-input {
-  margin: 20px;
-  font-size: 14px;
-  color: #ffffff;
+  margin-bottom: 15px;
 }
 
 #canvas-container {
   display: inline-block;
   border: 2px solid #aaaaaa;
   border-radius: 6px;
+}
+
+#boutons {
   margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+button {
+  padding: 10px 24px;
+  background-color: #222222;
+  color: #ffffff;
+  border: 1px solid #aaaaaa;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #333333;
+}
+
+input {
+  font-size: 14px;
+  color: #ffffff;
 }
