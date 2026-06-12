@@ -5,10 +5,9 @@
 #include "euler.h"
 #include "constante.h"
 
-void determiner_planete(char *nom, double *masse, double *perihelie, double *excentriste, double *demi_axe)
-{
+void determiner_planete(char *nom, double *masse, double *perihelie, double *excentriste, double *demi_axe){
     /*
-
+    Définir les valeurs selon la planète
     */
     int decalage = 'a' - 'A';
     int longueur = strlen(nom);
