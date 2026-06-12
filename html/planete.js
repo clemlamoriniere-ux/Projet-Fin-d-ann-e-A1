@@ -1,12 +1,13 @@
-let echelle = 6500000000;
+let echelle = 1000000000;
+let reader = new FileReader();
+let file;
 let dataJSON;
 let method;
-let a = 0;
-let enCours = false;
-let etoiles = [];
+let trajectoireVisitee = [];
 
 function readFile(input) {
   let file = input.files[0];
+
   let reader = new FileReader();
 
   reader.readAsText(file);
@@ -14,7 +15,24 @@ function readFile(input) {
   reader.onload = function () {
     dataJSON = JSON.parse(reader.result);
     method = Object.keys(dataJSON)[0];
-    redraw();
+    a = 0;
+    trajectoireVisitee = [];
+
+    console.log(dataJSON[method]);
+    for (let i = 0; i < 3750; i++) {
+      point(
+        200 + dataJSON[method][i][0][0] / echelle,
+        200 + dataJSON[method][i][0][1] / echelle,
+      );
+      i++;
+    }
+    stroke(255, 0, 0);
+    fill(0, 100, 200);
+    circle(
+      200 + dataJSON[method][0][0][0] / echelle,
+      200 + dataJSON[method][0][0][1] / echelle,
+      10,
+    );
   };
 
   reader.onerror = function () {
@@ -22,70 +40,67 @@ function readFile(input) {
   };
 }
 
-function toggleAnim() {
-  if (enCours) {
-    noLoop();
-    enCours = false;
-  } else {
+function preload() {
+  button = createButton("reset");
+  button.mousePressed(reset);
+}
+
+function reset() {
+  a = 0;
+  trajectoireVisitee = [];
+  loop();
+  noLoop();
+}
+
+function mousePressed() {
+  if (mouseButton === LEFT) {
     loop();
-    enCours = true;
   }
 }
 
-function resetAnim() {
-  a = 0;
+function mouseReleased() {
   noLoop();
-  enCours = false;
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight - 150);
 }
 
 function setup() {
   noLoop();
-  let canvas = createCanvas(1100, 600);
-  canvas.parent("canvas-container");
+  createCanvas(720, 400);
+  stroke(255, 255, 0);
+  fill(255, 255, 0);
+  circle(200, 200, 30);
   a = 0;
-  for (let i = 0; i < 200; i++) {
-    etoiles.push({ x: random(width), y: random(height), taille: random(1, 3) });
-  }
 }
 
 function draw() {
   background(0);
 
-  noStroke();
-  fill(255, 255, 255);
-  for (let i = 0; i < etoiles.length; i++) {
-    circle(etoiles[i].x, etoiles[i].y, etoiles[i].taille);
-  }
-
-  if (dataJSON) {
-    stroke(255, 255, 255);
-    let total = dataJSON[method].length;
-    for (let i = 0; i < total; i++) {
-      point(
-        550 + dataJSON[method][i][0][0] / echelle,
-        300 + dataJSON[method][i][0][1] / echelle,
-      );
-      i++;
-    }
+  // Trace la trajectoire accumulée
+  stroke(255, 255, 255);
+  for (let i = 0; i < trajectoireVisitee.length; i++) {
+    point(trajectoireVisitee[i].x, trajectoireVisitee[i].y);
   }
 
   stroke(255, 255, 0);
   fill(255, 255, 0);
-  circle(550, 300, 60);
+  circle(200, 200, 30);
 
-  if (dataJSON) {
-    stroke(255, 0, 0);
-    fill(210, 210, 220);
-    circle(
-      550 + dataJSON[method][a][0][0] / echelle,
-      300 + dataJSON[method][a][0][1] / echelle,
-      20,
-    );
+  let px = 200 + dataJSON[method][a][0][0] / echelle;
+  let py = 200 + dataJSON[method][a][0][1] / echelle;
 
-    if (a < total - 1) {
-      a = a + 1;
-    } else {
-      a = 0;
-    }
-  }
+  // Ajoute la position actuelle à la trajectoire
+  trajectoireVisitee.push({ x: px, y: py });
+
+  stroke(255, 0, 0);
+  fill(0, 100, 200);
+  circle(px, py, 10);
+
+  if (a < 36501) {
+    a = a + 5;
+  } else {
+    a = 0;
+  } // repart au début sans effacer la trajectoire
 }

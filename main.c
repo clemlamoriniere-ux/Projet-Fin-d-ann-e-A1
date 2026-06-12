@@ -24,19 +24,20 @@ trajectoire euler(planete planet)
     // vecteur accélération
     vector acceleration = multiplication(position, -(GRAVITY * MASSE_SOLEIL) / pow(distance, 3));
 
-    int dt = 86400; // pas de temps = 1 jour
+    int dt = 3600 * 6; // pas de temps = 1 jour
 
     trajectoire traj;
-    traj.ensemble = malloc(sizeof(point) * 365); // 365: Révolution de la Terre
-    for (int i = 0; i < 365; i++)
+    traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
+    for (int i = 0; i < 365 * 50; i++)
     {
-        vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt));
-        vector pos_t_plus_un = addition(position, multiplication(v_t_plus_un, dt));
-        position = pos_t_plus_un;                                                              // nouvelle position
-        vitesse = v_t_plus_un;                                                                 // nouvelle vitesse
-        distance = norme(position);                                                            // nouvelle norme
-        acceleration = multiplication(position, -(GRAVITY * MASSE_SOLEIL) / pow(distance, 3)); // nouvelle accélération
-        traj.ensemble[i] = new_point(pos_t_plus_un, v_t_plus_un, i * dt);                      // ajout d'un point pour former la trajectoire
+        vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
+        vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
+
+        position = pos_t_plus_un;
+        vitesse = v_t_plus_un;
+        distance = norme(position);
+        acceleration = multiplication(position, -(GRAVITY * MASSE_SOLEIL) / pow(distance, 3));
+        traj.ensemble[i] = new_point(pos_t_plus_un, v_t_plus_un, i * dt);
     }
     return traj;
 }
@@ -45,7 +46,7 @@ int main()
 {
     vectorTest();
 
-    trajectoire traj = new_trajectoire(365); // 365: Révolution de la Terre
+    trajectoire traj = new_trajectoire(365 * 50); // 365: Révolution de la Terre
     planete Earth = new_planete("Terre", MASSE_TERRE, traj, PERIHELIE_TERRE);
     trajectoire traj_Earth = euler(Earth);
     printf("Euler termine\n");
@@ -60,11 +61,11 @@ int main()
     fprintf(fichier, "{\n");
     fprintf(fichier, "\"earth-euler\" : [\n");
     printf("Debut ecriture\n");
-    for (int i = 0; i < 365; i++)
+    for (int i = 0; i < 365 * 50; i++)
     {
         point p = traj_Earth.ensemble[i];
         fprintf(fichier, "[[%e,%e,%e],[%e,%e,%e],%d]", p.r.x, p.r.y, p.r.z, p.v.x, p.v.y, p.v.z, p.t);
-        if (i < 364)
+        if (i < 365 * 50 - 1)
             fprintf(fichier, ",\n");
     }
     fprintf(fichier, "\n]\n}");
