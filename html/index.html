@@ -3,27 +3,20 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projet Orbites</title>
-    <link rel="stylesheet" href="./planete.css">
+    <title>Projet orbites</title>
+    <link href="planete.css" rel="stylesheet">
 </head>
 
 <body>
+    <h1>Projet orbites</h1>
+    <p>charger le fichier json pour commencer</p>
+    <p>maintenir le bouton gauche de la souris enfoncé pour animer la trajectoire</p>
+    <p id="demo"></p>
 
-    <h1>Projet Orbites</h1>
-    <p>Charger un fichier JSON pour commencer</p>
+    <input type="file" onchange="readFile(this)">
 
-    <div id="canvas-container"></div>
-
-    <div id="boutons">
-        <input type="file" onchange="readFile(this)">
-        <button onclick="toggleAnim()">Animer</button>
-        <button onclick="resetAnim()">Reset</button>
-    </div>
-
-    <script src="./p5.min.js"></script>
-    <script src="./planete.js"></script>
-
+    <script src="p5.min.js"></script>
+    <script src="planete.js"></script>
 </body>
 
 </html>
