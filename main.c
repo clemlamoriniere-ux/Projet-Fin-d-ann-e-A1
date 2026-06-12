@@ -39,7 +39,7 @@ int main(){
     planete Earth_asymp = new_planete("Terre", MASSE_TERRE, traj, PERIHELIE_TERRE);
     trajectoire traj_Earth_asymp = euler_asymetrique(Earth);
     printf("Euler asymètrique terminé\n");
-    FILE *fichier_asymp = fopen("trajectoire.json", "w");
+    FILE *fichier_asymp = fopen("trajectoire_asymp.json", "w");
     printf("Fichier ouvert\n");
     if (fichier_asymp == NULL){
         printf("Erreur : Impossible de creer le fichier JSON\n");
@@ -57,7 +57,7 @@ int main(){
     }
     fprintf(fichier_asymp, "\n]\n}");
     fclose(fichier_asymp);
-    printf("Fichier 'trajectoire.json' genere avec succes !\n");
+    printf("Fichier 'trajectoire_asymp.json' genere avec succes !\n");
     free(traj_Earth_asymp.ensemble);
     free(traj.ensemble);
 
