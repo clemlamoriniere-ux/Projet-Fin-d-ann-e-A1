@@ -14,5 +14,6 @@ double norme(vector vector1);
 
 vector new_vector(double x, double y, double z);
 void print_vector(vector vector1);
+void vectorTest();
 
 #endif
