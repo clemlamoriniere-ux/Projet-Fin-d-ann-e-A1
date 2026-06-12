@@ -5,58 +5,68 @@
 #include "euler.h"
 #include "constante.h"
 
-void determiner_planete(char* nom, double* masse, double* perihelie, double* excentriste, double* demi_axe){
-/*
+void determiner_planete(char *nom, double *masse, double *perihelie, double *excentriste, double *demi_axe)
+{
+    /*
 
-*/        
-    int decalage = 'a' -'A';
+    */
+    int decalage = 'a' - 'A';
     int longueur = strlen(nom);
-    char* nom_p = malloc(sizeof(char)*longueur);
-    for(int i=0; i< longueur - 1; i++){
-        if(nom[i] < 'a')
+    char *nom_p = malloc(sizeof(char) * longueur);
+    for (int i = 0; i < longueur - 1; i++)
+    {
+        if (nom[i] < 'a')
             nom_p[i] = nom[i] + decalage;
-        else{ nom_p[i] = nom[i];}    
+        else
+        {
+            nom_p[i] = nom[i];
+        }
     }
-    if(strcmp(nom_p,"terre") == 0){
-        &masse = MASSE_TERRE;
-        &perihelie = PERIHELIE_TERRE;
-        &excentriste = EXCENTRISTE_TERRE;
-        &demi_axe = DEMI_AXE_TERRE;
+    if (strcmp(nom_p, "terre") == 0)
+    {
+        *masse = MASSE_TERRE;
+        *perihelie = PERIHELIE_TERRE;
+        *excentriste = EXCENTRISTE_TERRE;
+        *demi_axe = DEMI_AXE_TERRE;
     }
-    else if (strcmp(nom_p,"mars") == 0){
-        &masse = MASSE_MARS;
-        &perihelie = PERIHELIE_MARS;
-        &excentriste = EXCENTRISTE_MARS;
-        &demi_axe = DEMI_AXE_MARS;
+    else if (strcmp(nom_p, "mars") == 0)
+    {
+        *masse = MASSE_MARS;
+        *perihelie = PERIHELIE_MARS;
+        *excentriste = EXCENTRISTE_MARS;
+        *demi_axe = DEMI_AXE_MARS;
     }
-    else if (strcmp(nom_p,"jupiter") == 0){
-        &masse = MASSE_JUPITER;
-        &perihelie = PERIHELIE_JUPITER;
-        &excentriste = EXCENTRISTE_JUPITER;
-        &demi_axe = DEMI_AXE_JUPITER;
+    else if (strcmp(nom_p, "jupiter") == 0)
+    {
+        *masse = MASSE_JUPITER;
+        *perihelie = PERIHELIE_JUPITER;
+        *excentriste = EXCENTRISTE_JUPITER;
+        *demi_axe = DEMI_AXE_JUPITER;
     }
-    else if (strcmp(nom_p,"saturne") == 0){
-        &masse = MASSE_SATURNE;
-        &perihelie = PERIHELIE_SATURNE;
-        &excentriste = EXCENTRISTE_SATURNE;
-        &demi_axe = DEMI_AXE_SATURNE;
+    else if (strcmp(nom_p, "saturne") == 0)
+    {
+        *masse = MASSE_SATURNE;
+        *perihelie = PERIHELIE_SATURNE;
+        *excentriste = EXCENTRISTE_SATURNE;
+        *demi_axe = DEMI_AXE_SATURNE;
     }
     free(nom_p);
 }
 
-trajectoire euler(planete planet){
+trajectoire euler(planete planet)
+{
     /*
     Résolution de l'équation différentiel par la méthode d'Euler pour obtenir une trajectoire à convertir en JSON
     */
 
-   double masse;
-   double perihelie;
-   double excentriste;
-   double demi_axe;
-   determiner_planete(planet.nom, &masse, &perihelie, &excentriste, &demi_axe);
+    double masse;
+    double perihelie;
+    double excentriste;
+    double demi_axe;
+    determiner_planete(planet.nom, &masse, &perihelie, &excentriste, &demi_axe);
 
     vector position = new_vector(perihelie, 0, 0); // vecteur position initial
-    double distance = norme(position);                   // norme du vecteur position
+    double distance = norme(position);             // norme du vecteur position
 
     // valeur initiale de la vitesse en y
     double vitesse_perihelie_y = sqrt((GRAVITY * MASSE_SOLEIL * (1 + excentriste)) / (demi_axe * (1 - excentriste)));
@@ -70,7 +80,8 @@ trajectoire euler(planete planet){
 
     trajectoire traj;
     traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
-    for (int i = 0; i < 365 * 50; i++){
+    for (int i = 0; i < 365 * 50; i++)
+    {
         vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
         vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
 
@@ -83,7 +94,8 @@ trajectoire euler(planete planet){
     return traj;
 }
 
-trajectoire euler_asymetrique(planete planet){
+trajectoire euler_asymetrique(planete planet)
+{
     /*
     Résolution de l'équation différentiel par la méthode d'Euler asymètrique pour obtenir une trajectoire à convertir en JSON
     */
@@ -95,7 +107,7 @@ trajectoire euler_asymetrique(planete planet){
     determiner_planete(planet.nom, &masse, &perihelie, &excentriste, &demi_axe);
 
     vector position = new_vector(perihelie, 0, 0); // vecteur position initial
-    double distance = norme(position);                   // norme du vecteur position
+    double distance = norme(position);             // norme du vecteur position
 
     // valeur initiale de la vitesse en y
     double vitesse_perihelie_y = sqrt((GRAVITY * MASSE_SOLEIL * (1 + excentriste)) / (demi_axe * (1 - excentriste)));
@@ -109,7 +121,8 @@ trajectoire euler_asymetrique(planete planet){
 
     trajectoire traj;
     traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
-    for (int i = 0; i < 365 * 50; i++){
+    for (int i = 0; i < 365 * 50; i++)
+    {
         vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
         vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
 
