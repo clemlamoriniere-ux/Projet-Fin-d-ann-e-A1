@@ -21,16 +21,16 @@ function readFile(input) {
     console.log(dataJSON[method]);
     for (let i = 0; i < 3750; i++) {
       point(
-        200 + dataJSON[method][i][0][0] / echelle,
-        200 + dataJSON[method][i][0][1] / echelle,
+        width / 2 + dataJSON[method][i][0][0] / echelle,
+        height / 2 + dataJSON[method][i][0][1] / echelle,
       );
       i++;
     }
     stroke(255, 0, 0);
     fill(0, 100, 200);
     circle(
-      200 + dataJSON[method][0][0][0] / echelle,
-      200 + dataJSON[method][0][0][1] / echelle,
+      width / 2 + dataJSON[method][0][0][0] / echelle,
+      height / 2 + dataJSON[method][0][0][1] / echelle,
       10,
     );
   };
@@ -38,18 +38,6 @@ function readFile(input) {
   reader.onerror = function () {
     console.log(reader.error);
   };
-}
-
-function preload() {
-  button = createButton("reset");
-  button.mousePressed(reset);
-}
-
-function reset() {
-  a = 0;
-  trajectoireVisitee = [];
-  loop();
-  noLoop();
 }
 
 function mousePressed() {
@@ -63,22 +51,21 @@ function mouseReleased() {
 }
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight - 150);
+  createCanvas(windowWidth, windowHeight - 150);
 }
 
 function setup() {
   noLoop();
-  createCanvas(720, 400);
+  createCanvas(1380, 720);
   stroke(255, 255, 0);
   fill(255, 255, 0);
-  circle(200, 200, 30);
+  circle(width / 2, height / 2, 30);
   a = 0;
 }
 
 function draw() {
   background(0);
 
-  // Trace la trajectoire accumulée
   stroke(255, 255, 255);
   for (let i = 0; i < trajectoireVisitee.length; i++) {
     point(trajectoireVisitee[i].x, trajectoireVisitee[i].y);
@@ -86,10 +73,10 @@ function draw() {
 
   stroke(255, 255, 0);
   fill(255, 255, 0);
-  circle(200, 200, 30);
+  circle(width / 2, height / 2, 30);
 
-  let px = 200 + dataJSON[method][a][0][0] / echelle;
-  let py = 200 + dataJSON[method][a][0][1] / echelle;
+  let px = width / 2 + dataJSON[method][a][0][0] / echelle;
+  let py = height / 2 + dataJSON[method][a][0][1] / echelle;
 
   // Ajoute la position actuelle à la trajectoire
   trajectoireVisitee.push({ x: px, y: py });
