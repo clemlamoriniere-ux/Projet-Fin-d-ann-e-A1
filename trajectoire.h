@@ -8,6 +8,5 @@ typedef struct trajectoire_{
 } trajectoire;
 
 trajectoire new_trajectoire(int nbPoints);
-void printTrajectoire(trajectoire traj, int nbPoints);
 
 #endif
