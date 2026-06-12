@@ -1,4 +1,4 @@
-let echelle = 600000000;
+let echelle = 6500000000;
 let dataJSON;
 let method;
 let a = 0;
@@ -59,7 +59,8 @@ function draw() {
 
   if (dataJSON) {
     stroke(255, 255, 255);
-    for (let i = 0; i < 3750; i++) {
+    let total = dataJSON[method].length;
+    for (let i = 0; i < total; i++) {
       point(
         550 + dataJSON[method][i][0][0] / echelle,
         300 + dataJSON[method][i][0][1] / echelle,
@@ -81,7 +82,7 @@ function draw() {
       20,
     );
 
-    if (a < 36501) {
+    if (a < total - 1) {
       a = a + 1;
     } else {
       a = 0;
