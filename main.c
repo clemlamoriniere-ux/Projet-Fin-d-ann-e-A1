@@ -46,15 +46,27 @@ int main(){
     trajectoire traj = new_trajectoire(365); // 365: Révolution de la Terre
     planete Earth = new_planete("Terre",MASSE_TERRE,traj,PERIHELIE_TERRE);
     trajectoire traj_Earth = euler(Earth);
+    printf("Euler termine\n");
     FILE *fichier = fopen("trajectoire.json", "w"); 
+    printf("Fichier ouvert\n");
     if (fichier == NULL) { 
         printf("Erreur : Impossible de creer le fichier JSON\n"); 
         return 1; 
-    } 
-    printf("Simulation en cours...\n");
-    euler(Earth); 
+    }
+    printf("Simulation en cours...\n"); 
+    fprintf(fichier, "{\n");
+    fprintf(fichier, "\"earth-euler\" : [\n");
+    printf("Debut ecriture\n");
+    for(int i = 0; i < 365; i++){
+        point p = traj_Earth.ensemble[i];
+        fprintf(fichier, "[[%e,%e,%e],[%e,%e,%e],%d]", p.r.x, p.r.y, p.r.z, p.v.x, p.v.y, p.v.z, p.t);
+        if(i < 364)
+            fprintf(fichier, ",\n");
+    }
+    fprintf(fichier, "\n]\n}");
     fclose(fichier); 
     printf("Fichier 'trajectoire.json' genere avec succes !\n"); 
-    //free(Earth.traj);
+    free(traj_Earth.ensemble);
+    free(traj.ensemble);
     return 0;
 }
