@@ -2,11 +2,13 @@
 #include <stdio.h>
 #include <math.h>
 #include "euler.h"
+#include "constante.h"
 
-trajectoire euler(planete planet){
-/*
-Résolution de l'équation différentiel par la méthode d'Euler pour obtenir une trajectoire à convertir en JSON
-*/
+trajectoire euler(planete planet)
+{
+    /*
+    Résolution de l'équation différentiel par la méthode d'Euler pour obtenir une trajectoire à convertir en JSON
+    */
     vector position = new_vector(PERIHELIE_TERRE, 0, 0); // vecteur position initial
     double distance = norme(position);                   // norme du vecteur position
 
@@ -22,7 +24,8 @@ Résolution de l'équation différentiel par la méthode d'Euler pour obtenir un
 
     trajectoire traj;
     traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
-    for (int i = 0; i < 365 * 50; i++){
+    for (int i = 0; i < 365 * 50; i++)
+    {
         vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
         vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
 
@@ -35,10 +38,11 @@ Résolution de l'équation différentiel par la méthode d'Euler pour obtenir un
     return traj;
 }
 
-trajectoire euler_asymetrique(planete planet){
-/*
-Résolution de l'équation différentiel par la méthode d'Euler asymètrique pour obtenir une trajectoire à convertir en JSON
-*/
+trajectoire euler_asymetrique(planete planet)
+{
+    /*
+    Résolution de l'équation différentiel par la méthode d'Euler asymètrique pour obtenir une trajectoire à convertir en JSON
+    */
     vector position = new_vector(PERIHELIE_TERRE, 0, 0); // vecteur position initial
     double distance = norme(position);                   // norme du vecteur position
 
@@ -54,7 +58,8 @@ Résolution de l'équation différentiel par la méthode d'Euler asymètrique po
 
     trajectoire traj;
     traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
-    for (int i = 0; i < 365 * 50; i++){
+    for (int i = 0; i < 365 * 50; i++)
+    {
         vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
         vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
 
