@@ -15,8 +15,9 @@ void creer_fichier(planete planet){
     planete Earth = new_planete("Terre", masse, traj, perihelie);
     trajectoire traj_Earth = euler(Earth);
     printf("Euler termine\n");
-    char* nom_planete = planet.nom;
-    nom_planete = strcat(nom_planete,".json");
+    char nom_planete[100];
+    strcpy(nom_planete, planet.nom);
+    strcat(nom_planete, ".json");
     FILE *fichier = fopen(nom_planete,"w");
     printf("Fichier ouvert\n");
     if (fichier == NULL){

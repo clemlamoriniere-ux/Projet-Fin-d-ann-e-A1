@@ -11,8 +11,8 @@ void determiner_planete(char *nom, double *masse, double *perihelie, double *exc
     */
     int decalage = 'a' - 'A';
     int longueur = strlen(nom);
-    char *nom_p = malloc(sizeof(char) * longueur);
-    for (int i = 0; i < longueur - 1; i++)
+    char *nom_p = malloc(sizeof(char) * (longueur + 1));
+    for (int i = 0; i < longueur; i++)
     {
         if (nom[i] < 'a')
             nom_p[i] = nom[i] + decalage;
@@ -21,6 +21,7 @@ void determiner_planete(char *nom, double *masse, double *perihelie, double *exc
             nom_p[i] = nom[i];
         }
     }
+    nom_p[longueur] = '\0';
     if (strcmp(nom_p, "terre") == 0)
     {
         *masse = MASSE_TERRE;
@@ -123,10 +124,10 @@ trajectoire euler_asymetrique(planete planet)
     for (int i = 0; i < 365 * 50; i++)
     {
         vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
-        vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
+        vector pos_t_plus_un = addition(position, multiplication(v_t_plus_un, dt));   // pos(t) + v(t)*dt
 
         position = pos_t_plus_un;
-        vitesse = v_t_plus_un;
+        vitesse = v_t_plus_un; 
         distance = norme(position);
         acceleration = multiplication(position, -(GRAVITY * MASSE_SOLEIL) / pow(distance, 3));
         traj.ensemble[i] = new_point(pos_t_plus_un, v_t_plus_un, i * dt);
