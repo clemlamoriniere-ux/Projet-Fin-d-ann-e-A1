@@ -1,5 +1,5 @@
-#ifndef EULER_H
-#define EULER_H
+#ifndef FICHIER_H
+#define FICHIER_H
 #include "euler.h"
 
 void creer_fichier(planete planet);
