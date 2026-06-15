@@ -1,7 +1,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "planete.h"
+#include "constante.h"
 
 planete new_planete(char* nom1, double masse1,trajectoire traj1,double perihelie1){
 /*
