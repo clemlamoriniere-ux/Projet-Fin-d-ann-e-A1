@@ -56,5 +56,17 @@ void determiner_planete(char *nom, double *masse, double *perihelie, double *exc
         *excentriste = EXCENTRISTE_SATURNE;
         *demi_axe = DEMI_AXE_SATURNE;
     }
+    else if (strcmp(nom_p, "venus") == 0){
+        *masse = MASSE_VENUS;
+        *perihelie = PERIHELIE_VENUS;
+        *excentriste = EXCENTRISTE_VENUS;
+        *demi_axe = DEMI_AXE_VENUS;
+    }
+    else if (strcmp(nom_p, "mercure") == 0){
+        *masse = MASSE_MERCURE;
+        *perihelie = PERIHELIE_MERCURE;
+        *excentriste = EXCENTRISTE_MERCURE;
+        *demi_axe = DEMI_AXE_MERCURE;
+    }
     free(nom_p); // libérer l'espace
 }

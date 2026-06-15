@@ -1,4 +1,4 @@
-let echelle = 800000000;
+let echelle = 2000000000;
 let a = 0;
 let button;
 let planetes = [];

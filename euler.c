@@ -28,10 +28,10 @@ trajectoire euler(planete planet)
     // vecteur accélération
     vector acceleration = multiplication(position, -(GRAVITY * MASSE_SOLEIL) / pow(distance, 3));
 
-    int dt = 3600 * 6; // pas de temps = 1 jour
+    int dt = 3600 * 6; // pas de temps = 6 heures
 
     trajectoire traj;
-    traj.ensemble = malloc(sizeof(point) * 365 * 50); // 365: Révolution de la Terre
+    traj.ensemble = malloc(sizeof(point) * 365 * 50); // Révolution de la Terre * valeur assez grande
     for (int i = 0; i < 365 * 50; i++)
     {
         vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
