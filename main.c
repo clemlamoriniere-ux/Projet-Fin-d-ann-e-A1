@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <math.h>
+#include <string.h>
 #include "constante.h"
 #include "planete.h"
 #include "point.h"
@@ -12,8 +13,13 @@
 int main(){
     vectorTest();
 
+    char chaine[100];
+    printf ("Entrez votre planète ? ");
+    fgets (chaine, 100, stdin);
+    chaine[strlen (chaine) - 1] = '\0';
+
     trajectoire traj = new_trajectoire(365);
-    creer_fichier(new_planete("terre",MASSE_TERRE,traj,PERIHELIE_TERRE));
-    creer_fichier(new_planete("mars",MASSE_MARS,traj,PERIHELIE_MARS));
+    creer_fichier(new_planete(chaine,MASSE_TERRE,traj,PERIHELIE_TERRE));
+    creer_fichier(new_planete(chaine,MASSE_MARS,traj,PERIHELIE_MARS));
     return 0;
 }
