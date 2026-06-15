@@ -11,15 +11,20 @@
 #include "fichier.h"
 
 int main(){
-    vectorTest();
+    vectorTest(); // Test fonction
 
     char chaine[100];
     printf ("Entrez votre planète ? ");
     fgets (chaine, 100, stdin);
-    chaine[strlen (chaine) - 1] = '\0';
+    chaine[strlen (chaine) - 1] = '\0'; // supprimer le \n
+    printf("\n");
 
+    //création de fichier
     trajectoire traj = new_trajectoire(365);
-    creer_fichier(new_planete(chaine,MASSE_TERRE,traj,PERIHELIE_TERRE));
-    creer_fichier(new_planete(chaine,MASSE_MARS,traj,PERIHELIE_MARS));
+    double masse;
+    double perihelie;
+    creer_fichier(new_planete(chaine,masse,traj,perihelie));
+    creer_fichier(new_planete(chaine,masse,traj,perihelie));
+
     return 0;
 }

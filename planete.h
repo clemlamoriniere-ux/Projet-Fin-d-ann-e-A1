@@ -11,5 +11,6 @@ typedef struct planete_{
 } planete;
 
 planete new_planete(char* nom1, double masse1,trajectoire traj1,double perihelie1);
+void determiner_planete(char *nom, double *masse, double *perihelie, double *excentriste, double *demi_axe);
 
 #endif

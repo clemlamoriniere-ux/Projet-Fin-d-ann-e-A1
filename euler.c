@@ -4,54 +4,7 @@
 #include <string.h>
 #include "euler.h"
 #include "constante.h"
-
-void determiner_planete(char *nom, double *masse, double *perihelie, double *excentriste, double *demi_axe){
-    /*
-    Définir les valeurs selon la planète
-    */
-    int decalage = 'a' - 'A';
-    int longueur = strlen(nom);
-    char *nom_p = malloc(sizeof(char) * (longueur + 1));
-    for (int i = 0; i < longueur; i++)
-    {
-        if (nom[i] < 'a')
-            nom_p[i] = nom[i] + decalage;
-        else
-        {
-            nom_p[i] = nom[i];
-        }
-    }
-    nom_p[longueur] = '\0';
-    if (strcmp(nom_p, "terre") == 0)
-    {
-        *masse = MASSE_TERRE;
-        *perihelie = PERIHELIE_TERRE;
-        *excentriste = EXCENTRISTE_TERRE;
-        *demi_axe = DEMI_AXE_TERRE;
-    }
-    else if (strcmp(nom_p, "mars") == 0)
-    {
-        *masse = MASSE_MARS;
-        *perihelie = PERIHELIE_MARS;
-        *excentriste = EXCENTRISTE_MARS;
-        *demi_axe = DEMI_AXE_MARS;
-    }
-    else if (strcmp(nom_p, "jupiter") == 0)
-    {
-        *masse = MASSE_JUPITER;
-        *perihelie = PERIHELIE_JUPITER;
-        *excentriste = EXCENTRISTE_JUPITER;
-        *demi_axe = DEMI_AXE_JUPITER;
-    }
-    else if (strcmp(nom_p, "saturne") == 0)
-    {
-        *masse = MASSE_SATURNE;
-        *perihelie = PERIHELIE_SATURNE;
-        *excentriste = EXCENTRISTE_SATURNE;
-        *demi_axe = DEMI_AXE_SATURNE;
-    }
-    free(nom_p);
-}
+#include "planete.h"
 
 trajectoire euler(planete planet)
 {
