@@ -1,4 +1,4 @@
-let echelle = 1000000000;
+let echelle = 800000000;
 let a = 0;
 let button;
 let planetes = [];
@@ -10,25 +10,26 @@ const couleurParNom = {
 };
 
 function readFile(input) {
-  let file = input.files[0];
-  let reader = new FileReader();
+  for (let file of input.files) {
+    let reader = new FileReader();
 
-  reader.readAsText(file);
+    reader.readAsText(file);
 
-  reader.onload = function () {
-    let dataJSON = JSON.parse(reader.result);
-    let method = Object.keys(dataJSON)[0];
+    reader.onload = function () {
+      let dataJSON = JSON.parse(reader.result);
+      let method = Object.keys(dataJSON)[0];
 
-    planetes.push({
-      traj: dataJSON[method],
-      couleur: couleurParNom[file.name.replace(".json", "").toLowerCase()] || [
-        255, 255, 255,
-      ],
-      historique: [],
-    });
-    background(0);
-    redraw();
-  };
+      planetes.push({
+        traj: dataJSON[method],
+        couleur: couleurParNom[
+          file.name.replace(".json", "").toLowerCase()
+        ] || [255, 255, 255],
+        historique: [],
+      });
+      background(0);
+      redraw();
+    };
+  }
 
   reader.onerror = function () {
     console.log(reader.error);
@@ -89,5 +90,5 @@ function draw() {
     circle(x, y, 6);
   }
 
-  a = a + 5;
+  a = a + 7;
 }
