@@ -50,3 +50,22 @@ input {
   font-size: 14px;
   color: #ffffff;
 }
+
+.terre {
+  color: rgb(0, 0, 255);
+}
+.terrea {
+  color: rgb(0, 255, 255);
+}
+.mars {
+  color: rgba(255, 0, 0, 0.589);
+}
+.marsa {
+  color: rgba(255, 0, 0);
+}
+.planete {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  text-align: left;
+}
