@@ -9,11 +9,13 @@
 #include "euler.h"
 #include "fichier.h"
 
-int main(){
+int main()
+{
     vectorTest();
 
-    trajectoire traj = new_trajectoire(365);
-    creer_fichier(new_planete("terre",MASSE_TERRE,traj,PERIHELIE_TERRE));
-    creer_fichier(new_planete("mars",MASSE_MARS,traj,PERIHELIE_MARS));
+    trajectoire traj = new_trajectoire(365 * 50);
+    creer_fichier(new_planete("terre", MASSE_TERRE, traj, PERIHELIE_TERRE));
+    creer_fichier(new_planete("mars", MASSE_MARS, traj, PERIHELIE_MARS));
+    free(traj.ensemble);
     return 0;
 }

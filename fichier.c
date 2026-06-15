@@ -3,8 +3,12 @@
 #include <math.h>
 #include <string.h>
 #include "fichier.h"
+#include "euler.h"
+#include "planete.h"
+#include "trajectoire.h"
 
-void creer_fichier(planete planet){
+void creer_fichier(planete planet)
+{
     double masse;
     double perihelie;
     double excentriste;
@@ -15,11 +19,13 @@ void creer_fichier(planete planet){
     planete Earth = new_planete("Terre", masse, traj, perihelie);
     trajectoire traj_Earth = euler(Earth);
     printf("Euler termine\n");
-    char* nom_planete = planet.nom;
-    nom_planete = strcat(nom_planete,".json");
-    FILE *fichier = fopen(nom_planete,"w");
+    char *nom_planete = malloc(strlen(planet.nom) + 6);
+    strcpy(nom_planete, planet.nom);
+    strcat(nom_planete, ".json");
+    FILE *fichier = fopen(nom_planete, "w");
     printf("Fichier ouvert\n");
-    if (fichier == NULL){
+    if (fichier == NULL)
+    {
         printf("Erreur : Impossible de creer le fichier JSON\n");
         return;
     }
@@ -27,7 +33,8 @@ void creer_fichier(planete planet){
     fprintf(fichier, "{\n");
     fprintf(fichier, "\"earth-euler\" : [\n");
     printf("Debut ecriture\n");
-    for (int i = 0; i < 365 * 50; i++){
+    for (int i = 0; i < 365 * 50; i++)
+    {
         point p = traj_Earth.ensemble[i];
         fprintf(fichier, "[[%e,%e,%e],[%e,%e,%e],%d]", p.r.x, p.r.y, p.r.z, p.v.x, p.v.y, p.v.z, p.t);
         if (i < 365 * 50 - 1)
@@ -36,6 +43,7 @@ void creer_fichier(planete planet){
     fprintf(fichier, "\n]\n}");
     fclose(fichier);
     printf("Fichier 'trajectoire.json' genere avec succes !\n");
+    free(nom_planete); // ← ajouter ici
     free(traj_Earth.ensemble);
     free(traj.ensemble);
     return;
