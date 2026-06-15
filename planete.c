@@ -33,7 +33,7 @@ void determiner_planete(char *nom, double *masse, double *perihelie, double *exc
     }
     nom_p[longueur] = '\0';
     if (strcmp(nom_p, "terre") == 0){ //s'ils sont égaux alors on attribue les valeurs
-        *masse = MASSE_TERRE; // passage par pointeur
+        *masse = MASSE_TERRE; // déréférencement
         *perihelie = PERIHELIE_TERRE;
         *excentriste = EXCENTRISTE_TERRE;
         *demi_axe = DEMI_AXE_TERRE;

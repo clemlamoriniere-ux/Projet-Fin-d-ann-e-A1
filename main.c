@@ -24,7 +24,6 @@ int main(){
     double masse;
     double perihelie;
     creer_fichier(new_planete(chaine,masse,traj,perihelie));
-    creer_fichier(new_planete(chaine,masse,traj,perihelie));
     free(traj.ensemble); // libérer de l'espace
     return 0;
 }
