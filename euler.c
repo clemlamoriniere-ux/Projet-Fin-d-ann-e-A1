@@ -46,7 +46,8 @@ trajectoire euler(planete planet)
     return traj;
 }
 
-trajectoire euler_asymetrique(planete planet){
+trajectoire euler_asymetrique(planete planet)
+{
     /*
     Résolution de l'équation différentiel par la méthode d'Euler asymètrique pour obtenir une trajectoire à convertir en JSON
     */
@@ -72,9 +73,10 @@ trajectoire euler_asymetrique(planete planet){
 
     trajectoire traj;
     traj.ensemble = malloc(sizeof(point) * 365 * 50);
-    for (int i = 0; i < 365 * 50; i++){
-        vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt)); // v(t) + a(t)*dt
-        vector pos_t_plus_un = addition(position, multiplication(vitesse, dt));   // pos(t) + v(t)*dt
+    for (int i = 0; i < 365 * 50; i++)
+    {
+        vector v_t_plus_un = addition(vitesse, multiplication(acceleration, dt));   // v(t) + a(t)*dt
+        vector pos_t_plus_un = addition(position, multiplication(v_t_plus_un, dt)); // pos(t) + v(t)*dt
 
         position = pos_t_plus_un;
         vitesse = v_t_plus_un;

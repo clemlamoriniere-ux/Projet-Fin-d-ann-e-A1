@@ -2,14 +2,12 @@ let echelle = 1000000000;
 let a = 0;
 let button;
 let planetes = [];
-let couleurs = [
-  [0, 0, 255],
-  [0, 255, 255],
-  [255, 0, 0, 0.589],
-  [255, 0, 0],
-  [255, 173, 74],
-  [255, 103, 52],
-];
+const couleurParNom = {
+  terre: [0, 0, 255],
+  terre_asym: [0, 255, 255],
+  mars: [139, 0, 0],
+  mars_asym: [255, 0, 0],
+};
 
 function readFile(input) {
   let file = input.files[0];
@@ -23,7 +21,9 @@ function readFile(input) {
 
     planetes.push({
       traj: dataJSON[method],
-      couleur: couleurs[planetes.length % couleurs.length],
+      couleur: couleurParNom[file.name.replace(".json", "").toLowerCase()] || [
+        255, 255, 255,
+      ],
       historique: [],
     });
     background(0);
@@ -59,7 +59,7 @@ function mouseReleased() {
 
 function setup() {
   noLoop();
-  createCanvas(1400, 700);
+  createCanvas(1600, 900);
   background(0);
   a = 0;
 }
