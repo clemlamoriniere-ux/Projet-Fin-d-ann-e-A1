@@ -50,18 +50,29 @@ input {
   font-size: 14px;
   color: #ffffff;
 }
-
+.venus {
+  color: rgb(100, 80, 40);
+}
+.venusa {
+  color: rgb(255, 220, 150);
+}
 .terre {
-  color: rgb(0, 0, 255);
+  color: rgb(250, 250, 250);
 }
 .terrea {
-  color: rgb(0, 255, 255);
+  color: rgb(70, 130, 200);
 }
 .mars {
-  color: rgba(255, 0, 0, 0.589);
+  color: rgb(80, 30, 15);
 }
 .marsa {
-  color: rgba(255, 0, 0);
+  color: rgb(200, 100, 60);
+}
+.jupiter {
+  color: rgb(90, 70, 45);
+}
+.jupitera {
+  color: rgb(220, 185, 140);
 }
 .planete {
   position: fixed;

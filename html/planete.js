@@ -3,10 +3,14 @@ let a = 0;
 let button;
 let planetes = [];
 const couleurParNom = {
-  terre: [0, 0, 255],
-  terre_asym: [0, 255, 255],
-  mars: [139, 0, 0],
-  mars_asym: [255, 0, 0],
+  venus: [100, 80, 40],
+  venus_asym: [255, 220, 150],
+  terre: [250, 250, 250],
+  terre_asym: [70, 130, 200],
+  mars: [80, 30, 15],
+  mars_asym: [200, 100, 60],
+  jupiter: [90, 70, 45],
+  jupiter_asym: [220, 185, 140],
 };
 
 function readFile(input) {
@@ -73,6 +77,14 @@ function draw() {
   circle(width / 2, height / 2, 30);
 
   for (let p of planetes) {
+    let [r, g, b] = p.couleur;
+    noStroke();
+    fill(r, g, b);
+    for (let pos of p.historique) {
+      circle(pos[0], pos[1], 3);
+    }
+  }
+  for (let p of planetes) {
     let idx = a % p.traj.length;
     let [r, g, b] = p.couleur;
     let x = width / 2 + p.traj[idx][0][0] / echelle;
@@ -80,14 +92,9 @@ function draw() {
 
     p.historique.push([x, y]);
 
+    fill(r, g, b);
     noStroke();
-    fill(r, g, b);
-    for (let pos of p.historique) {
-      circle(pos[0], pos[1], 2);
-    }
-
-    fill(r, g, b);
-    circle(x, y, 6);
+    circle(x, y, 10);
   }
 
   a = a + 7;
