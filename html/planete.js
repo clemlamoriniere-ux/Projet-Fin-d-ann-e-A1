@@ -13,6 +13,8 @@ const couleurParNom = {
   jupiter_asym: [220, 185, 140],
 };
 
+// LECTURE DES FICHIERS JSON
+
 function readFile(input) {
   for (let file of input.files) {
     let reader = new FileReader();
@@ -20,24 +22,20 @@ function readFile(input) {
     reader.readAsText(file);
 
     reader.onload = function () {
-      let dataJSON = JSON.parse(reader.result);
-      let method = Object.keys(dataJSON)[0];
+      let dataJSON = JSON.parse(reader.result); // Convertit le texte lu en objet JavaScript
+      let method = Object.keys(dataJSON)[0]; // Récupère la première clé du JSON
 
       planetes.push({
         traj: dataJSON[method],
         couleur: couleurParNom[
           file.name.replace(".json", "").toLowerCase()
-        ] || [255, 255, 255],
+        ] || [255, 255, 255], // Détermine la couleur à partir du nom du fichier
         historique: [],
       });
       background(0);
       redraw();
     };
   }
-
-  reader.onerror = function () {
-    console.log(reader.error);
-  };
 }
 
 function preload() {
@@ -75,7 +73,7 @@ function draw() {
   noStroke();
   fill(255, 255, 0);
   circle(width / 2, height / 2, 30);
-
+  // On dessine la trainée des planetes grace à l'historique de passage
   for (let p of planetes) {
     let [r, g, b] = p.couleur;
     noStroke();
@@ -84,6 +82,7 @@ function draw() {
       circle(pos[0], pos[1], 3);
     }
   }
+  // On dessine la position actuelle de chaque planete et on avance dans le temps
   for (let p of planetes) {
     let idx = a % p.traj.length;
     let [r, g, b] = p.couleur;
