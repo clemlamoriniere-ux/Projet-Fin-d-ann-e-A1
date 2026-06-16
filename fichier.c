@@ -8,8 +8,7 @@
 #include "trajectoire.h"
 #include "constante.h"
 
-void creer_fichier(planete planet)
-{
+void creer_fichier(planete planet){
     /*
     Créer des fichiers JSON en fonction de la planète souhaitée
     */
@@ -27,11 +26,10 @@ void creer_fichier(planete planet)
     printf("Euler termine\n");
     char nom_planete[100];
     strcpy(nom_planete, planet.nom);
-    strcat(nom_planete, ".vscode/.json");
+    strcat(nom_planete, ".json");
     FILE *fichier1 = fopen(nom_planete, "w"); // mode écriture
     printf("Fichier ouvert\n");
-    if (fichier1 == NULL)
-    {
+    if (fichier1 == NULL){
         printf("Erreur : Impossible de créer le fichier JSON\n");
         return;
     }
@@ -39,8 +37,7 @@ void creer_fichier(planete planet)
     fprintf(fichier1, "{\n");
     fprintf(fichier1, "\"earth-euler\" : [\n");
     printf("Debut écriture\n");
-    for (int i = 0; i < 365 * 50; i++)
-    { // On rentre les valeurs des points pour créer une trajectoire
+    for (int i = 0; i < 365 * 50; i++){ // On rentre les valeurs des points pour créer une trajectoire
         point p = traj_p_euler.ensemble[i];
         fprintf(fichier1, "[[%e,%e,%e],[%e,%e,%e],%d]", p.r.x, p.r.y, p.r.z, p.v.x, p.v.y, p.v.z, p.t);
         if (i < 365 * 50 - 1)
@@ -59,8 +56,7 @@ void creer_fichier(planete planet)
     strcat(nom_planete1, "_asym.json");
     FILE *fichier2 = fopen(nom_planete1, "w");
     printf("Fichier ouvert\n");
-    if (fichier2 == NULL)
-    {
+    if (fichier2 == NULL){
         printf("Erreur : Impossible de créer le fichier JSON\n");
         return;
     }
@@ -68,8 +64,7 @@ void creer_fichier(planete planet)
     fprintf(fichier2, "{\n");
     fprintf(fichier2, "\"earth-euler\" : [\n");
     printf("Debut ecriture\n");
-    for (int i = 0; i < 365 * 50; i++)
-    {
+    for (int i = 0; i < 365 * 50; i++){
         point p = traj_p_euler_asym.ensemble[i];
         fprintf(fichier2, "[[%e,%e,%e],[%e,%e,%e],%d]", p.r.x, p.r.y, p.r.z, p.v.x, p.v.y, p.v.z, p.t);
         if (i < 365 * 50 - 1)
@@ -80,6 +75,6 @@ void creer_fichier(planete planet)
     printf("Fichier JSON généré avec succès !\n");
     free(traj_p_euler_asym.ensemble);
 
-    free(traj.ensemble);
+    free(traj.ensemble); // libérer de l'espace
     return;
 }

@@ -9,6 +9,7 @@
 #include "vector.h"
 #include "euler.h"
 #include "fichier.h"
+#include "energie.h"
 
 int main(){
     vectorTest(); // Test fonction
@@ -25,10 +26,13 @@ int main(){
     double perihelie;
     char* liste_planete[6] = {"mercure","venus","mars","terre","jupiter","saturne"}; // uranus et neptune trop loin
     if(chaine == "*") // toutes les planètes
-        for(int i=0;i<6;i++)
-            creer_fichier(new_planete(liste_planete[i],masse,traj,perihelie));
+        for(int i=0;i<6;i++){
+            planete p = new_planete(liste_planete[i],masse,traj,perihelie);
+            creer_fichier(p);
+        }
     else{
-        creer_fichier(new_planete(chaine,masse,traj,perihelie));
+        planete p = new_planete(chaine,masse,traj,perihelie);
+        creer_fichier(p);
     }
     free(traj.ensemble); // libérer de l'espace
     return 0;

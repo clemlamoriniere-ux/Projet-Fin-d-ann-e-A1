@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS = -Wall -lm
-SRC = main.c planete.c trajectoire.c euler.c vector.c fichier.c point.c
+SRC = main.c planete.c trajectoire.c euler.c vector.c fichier.c point.c energie.c
 OBJ = $(SRC:.c=.o)
 TARGET = bin/prog
 
